@@ -2,19 +2,36 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="row py-3">
+        <div class="col-3" id="sticky-sidebar">
+            <div class="sticky-top">
+                <div class="list-group">
+                    <a href="#!" class="list-group-item active">Attendance</a>
+                    <a href="#!" class="list-group-item list-group-item-action">Log</a>
+                </div>
+            </div>
+        </div>
+        <div class="col" id="main">
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="card">
+                        <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                        <div class="card-body">
+                            <form class="card-body__time">
+                                <span>2021/01/01（月）</span>
+                                <p>
+                                    20:30:41
+                                </p>
+                                <input type="hidden" name="stamp_date">
+                                <input type="hidden" name="stamp_time">
+                            </form>
+                            <div class="card-body__btns">
+                                <button type="button" class="btn btn-primary">出勤</button>
+                                <button type="button" class="btn btn-secondary">退勤</button>
+                            </div>
                         </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    </div>
                 </div>
             </div>
         </div>
