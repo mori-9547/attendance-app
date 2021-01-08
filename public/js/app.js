@@ -71450,9 +71450,20 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment_locale_ja__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment/locale/ja */ "./node_modules/moment/locale/ja.js");
+/* harmony import */ var moment_locale_ja__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_locale_ja__WEBPACK_IMPORTED_MODULE_1__);
 
-var now = moment__WEBPACK_IMPORTED_MODULE_0___default()();
-console.log(now.format());
+
+var today = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('L');
+var week = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('dddd');
+$(function () {
+  setInterval(function () {
+    $('#js-date').text(today + ' ' + week);
+    $('#js-time').text(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
+    $('input[name="stamp_date"]').val(today + ' ' + week);
+    $('input[name="stamp_time"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
+  }, 500);
+});
 
 /***/ }),
 

@@ -19,10 +19,8 @@
 
                         <div class="card-body">
                             <form class="card-body__time">
-                                <span>2021/01/01（月）</span>
-                                <p>
-                                    20:30:41
-                                </p>
+                                <span id="js-date"></span>
+                                <p id="js-time"></p>
                                 <input type="hidden" name="stamp_date">
                                 <input type="hidden" name="stamp_time">
                             </form>
