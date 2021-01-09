@@ -71460,7 +71460,7 @@ $(function () {
   setInterval(function () {
     $('#js-date').text(today + ' ' + week);
     $('#js-time').text(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
-    $('input[name="stamp_date"]').val(today + ' ' + week);
+    $('input[name="stamp_date"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD"));
     $('input[name="stamp_time"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
   }, 500);
 });

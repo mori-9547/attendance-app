@@ -17,18 +17,19 @@
                     <div class="card">
                         <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
 
-                        <div class="card-body">
-                            <form class="card-body__time">
+                        <form class="card-body" action="{{ route('attendanceRecord.store') }}" method="post">
+                            @csrf
+                            <div class="card-body__time">
                                 <span id="js-date"></span>
                                 <p id="js-time"></p>
                                 <input type="hidden" name="stamp_date">
                                 <input type="hidden" name="stamp_time">
-                            </form>
+                            </dive>
                             <div class="card-body__btns">
-                                <button type="button" class="btn btn-primary">出勤</button>
+                                <button type="submit" class="btn btn-primary">出勤</button>
                                 <button type="button" class="btn btn-secondary">退勤</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

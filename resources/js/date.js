@@ -8,7 +8,7 @@ $(function() {
     setInterval(function() {
         $('#js-date').text(today + ' ' + week);
         $('#js-time').text(moment().format('LTS'));
-        $('input[name="stamp_date"]').val(today + ' ' + week);
+        $('input[name="stamp_date"]').val(moment().format("YYYY-MM-DD"));
         $('input[name="stamp_time"]').val(moment().format('LTS'));
     }, 500);
 });
