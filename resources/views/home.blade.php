@@ -6,8 +6,8 @@
         <div class="col-3" id="sticky-sidebar">
             <div class="sticky-top">
                 <div class="list-group">
-                    <a href="#!" class="list-group-item active">Attendance</a>
-                    <a href="#!" class="list-group-item list-group-item-action">Log</a>
+                    <a href="#!" class="list-group-item active">Home</a>
+                    <a href="#!" class="list-group-item list-group-item-action">Attendance Records</a>
                 </div>
             </div>
         </div>
@@ -15,9 +15,15 @@
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="card">
-                        <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-
+                        <div class="card-header">
+                            {{ isset($attendance_status[0]["status"]) ? "出勤なう" : '' }}
+                        </div>
+                        @if (!isset($attendance_status[0]["status"]))
                         <form class="card-body" action="{{ route('attendanceRecord.store') }}" method="post">
+                        @else
+                        <form class="card-body" action="{{ route('attendanceRecord.update') }}" method="post">
+                        @method('PUT')
+                        @endif
                             @csrf
                             <div class="card-body__time">
                                 <span id="js-date"></span>
@@ -26,8 +32,11 @@
                                 <input type="hidden" name="stamp_time">
                             </dive>
                             <div class="card-body__btns">
+                            @if (!isset($attendance_status[0]["status"]))
                                 <button type="submit" class="btn btn-primary">出勤</button>
-                                <button type="button" class="btn btn-secondary">退勤</button>
+                            @else
+                                <button type="submit" class="btn btn-secondary">退勤</button>
+                            @endif
                             </div>
                         </form>
                     </div>

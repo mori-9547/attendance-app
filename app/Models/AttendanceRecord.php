@@ -15,4 +15,29 @@ class AttendanceRecord extends Model
      */
     protected $table = 'attendance_records';
 
+    // /**
+    //  * 状態定義
+    //  */
+    // const STATUS = [
+    //     1 => [ 'label' => '勤務なう', 'class' => '' ],
+    //     2 => [ 'label' => 'お疲れさん', 'class' => '' ],
+    // ];
+
+    // /**
+    //  * 状態のラベル
+    //  * @return string
+    //  */
+    // public function getStatusAttribute()
+    // {
+    //     // 状態値
+    //     $status = $this->attributes['status'];
+
+    //     // 定義されていなければ空文字を返す
+    //     if (!isset(self::STATUS[$status])) {
+    //         return '';
+    //     }
+
+    //     return $status;
+    // }
+
 }

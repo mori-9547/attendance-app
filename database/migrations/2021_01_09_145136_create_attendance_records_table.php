@@ -17,9 +17,10 @@ class CreateAttendanceRecordsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->date('date');
+            $table->integer('status')->default(1);
             $table->time('attendanced_at', $precision = 0);
             $table->time('leaved_at', $precision = 0)->nullable();
-            $table->date('work_date');
             $table->timestamps();
         });
     }

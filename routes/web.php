@@ -17,7 +17,7 @@ use App\Http\Controllers\HomeController;
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/store', [HomeController::class, 'store'])->name('attendanceRecord.store');
-    Route::post('/update', [HomeController::class, 'update'])->name('attendanceRecord.update');
+    Route::put('/update', [HomeController::class, 'update'])->name('attendanceRecord.update');
 });
 
 Auth::routes();
