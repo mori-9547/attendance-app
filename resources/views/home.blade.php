@@ -16,9 +16,13 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            {{ isset($attendance_status[0]["status"]) ? "出勤なう" : '' }}
+                            @if ($attendance_status == 1)
+                            出勤なう
+                            @elseif ($attendance_status ==2)
+                            お疲れさん
+                            @endif
                         </div>
-                        @if (!isset($attendance_status[0]["status"]))
+                        @if ($attendance_status == '')
                         <form class="card-body" action="{{ route('attendanceRecord.store') }}" method="post">
                         @else
                         <form class="card-body" action="{{ route('attendanceRecord.update') }}" method="post">
@@ -32,9 +36,9 @@
                                 <input type="hidden" name="stamp_time">
                             </dive>
                             <div class="card-body__btns">
-                            @if (!isset($attendance_status[0]["status"]))
+                            @if ($attendance_status == '')
                                 <button type="submit" class="btn btn-primary">出勤</button>
-                            @else
+                            @elseif ($attendance_status == 1)
                                 <button type="submit" class="btn btn-secondary">退勤</button>
                             @endif
                             </div>

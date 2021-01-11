@@ -15,6 +15,20 @@ class AttendanceRecord extends Model
      */
     protected $table = 'attendance_records';
 
+    /**
+     * 複数代入可能な属性
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'user_id',
+        'date',
+        'status',
+        'attendanced_at',
+        'leaved_at'
+    ];
+
     // /**
     //  * 状態定義
     //  */

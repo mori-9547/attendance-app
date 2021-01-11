@@ -27,13 +27,14 @@ class HomeController extends Controller
     public function index()
     {
         $today = Carbon::now()->toDateString();
-        $attendance_status = Auth::user()
+        $attendance_data = Auth::user()
             ->AttendanceRecords()
-            ->select('status')
             ->where('date', $today)
-            ->get()
-            ->toArray();
-
+            ->first();
+        $attendance_status = '';
+        if (!empty($attendance_data['status'])) {
+            $attendance_status = $attendance_data['status'];
+        }
         return view('home', [
             'attendance_status' => $attendance_status
         ]);
@@ -47,12 +48,12 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Auth::id();
-        $attendance_record = new AttendanceRecord();
-        $attendance_record->user_id = $user_id;
-        $attendance_record->attendanced_at = $request->stamp_time;
-        $attendance_record->date = $request->stamp_date;
-        Auth::user()->AttendanceRecords()->save($attendance_record);
+        $attendance_data = [
+            'user_id'        => Auth::id(),
+            'date'           => $request->stamp_date,
+            'attendanced_at' => $request->stamp_time
+        ];
+        Auth::user()->AttendanceRecords()->create($attendance_data);
         return redirect()->route('home');
     }
 
@@ -64,10 +65,14 @@ class HomeController extends Controller
      */
     public function update(Request $request)
     {
-        $attendance_record = Auth::user()
+        $update_data = [
+            'leaved_at' => $request->stamp_time,
+            'status'    => 2
+        ];
+        Auth::user()
             ->AttendanceRecords()
             ->where('date', $request->stamp_date)
-            ->update(['leaved_at' => $request->stamp_time]);
+            ->update($update_data);
         return redirect()->route('home');
     }
 }
