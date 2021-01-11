@@ -10903,3 +10903,23 @@ a.text-dark:focus {
   }
 }
 
+.card-body__time {
+  text-align: center;
+  margin: 3.2rem 0 8rem;
+}
+
+.card-body__time p {
+  font-size: 48px;
+}
+
+.card-body__btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 3.2rem 0;
+}
+
+.card-body__btns .btn {
+  width: 32%;
+  padding: 24px 0;
+}
+
