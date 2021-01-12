@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\AttendanceRecord;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,5 +44,10 @@ class User extends Authenticatable
     public function AttendanceRecords()
     {
         return $this->hasMany('App\Models\AttendanceRecord');
+    }
+
+    public function WorkTimes()
+    {
+        return $this->hasMany('App\Models\WorkTime');
     }
 }
