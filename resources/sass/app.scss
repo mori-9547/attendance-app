@@ -10,7 +10,7 @@
 .card-body__time {
     text-align: center;
     margin: 3.2rem 0 8rem;
-    p {
+    .main-time {
         font-size: 48px;
     }
 }
@@ -22,5 +22,14 @@
     .btn {
         width: 32%;
         padding: 24px 0;
+    }
+}
+
+.card-body__time {
+    .label-item {
+        font-size: 24px;
+        label {
+            margin: 0 16px 0 0;
+        }
     }
 }

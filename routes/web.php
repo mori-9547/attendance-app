@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/store', [HomeController::class, 'store'])->name('attendanceRecord.store');
     Route::put('/update', [HomeController::class, 'update'])->name('attendanceRecord.update');
+
+    Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
+    Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
+
 });
 
 Auth::routes();

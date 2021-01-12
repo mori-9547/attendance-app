@@ -3,14 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row py-3">
-        <div class="col-3" id="sticky-sidebar">
-            <div class="sticky-top">
-                <div class="list-group">
-                    <a href="#!" class="list-group-item active">Home</a>
-                    <a href="#!" class="list-group-item list-group-item-action">Attendance Records</a>
-                </div>
-            </div>
-        </div>
+        @include('layouts.sidebar')
         <div class="col" id="main">
             <div class="row justify-content-center">
                 <div class="col">
@@ -18,7 +11,7 @@
                         <div class="card-header">
                             @if ($attendance_status == 1)
                             出勤なう
-                            @elseif ($attendance_status ==2)
+                            @elseif ($attendance_status == 2)
                             お疲れさん
                             @endif
                         </div>
@@ -31,7 +24,7 @@
                             @csrf
                             <div class="card-body__time">
                                 <span id="js-date"></span>
-                                <p id="js-time"></p>
+                                <p class='main-time' id="js-time"></p>
                                 <input type="hidden" name="stamp_date">
                                 <input type="hidden" name="stamp_time">
                             </dive>

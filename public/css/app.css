@@ -10908,7 +10908,7 @@ a.text-dark:focus {
   margin: 3.2rem 0 8rem;
 }
 
-.card-body__time p {
+.card-body__time .main-time {
   font-size: 48px;
 }
 
@@ -10921,5 +10921,13 @@ a.text-dark:focus {
 .card-body__btns .btn {
   width: 32%;
   padding: 24px 0;
+}
+
+.card-body__time .label-item {
+  font-size: 24px;
+}
+
+.card-body__time .label-item label {
+  margin: 0 16px 0 0;
 }
 
