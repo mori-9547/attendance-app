@@ -29,6 +29,10 @@ class AttendanceRecord extends Model
         'leaved_at'
     ];
 
+    protected $dates = [
+        'date'
+    ];
+
     // /**
     //  * 状態定義
     //  */
