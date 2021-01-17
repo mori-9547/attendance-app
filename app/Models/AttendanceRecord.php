@@ -23,39 +23,30 @@ class AttendanceRecord extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'date',
         'status',
-        'attendanced_at',
-        'leaved_at'
     ];
 
-    protected $dates = [
-        'date'
+    /**
+     * キャストする属性
+     *
+     * @var array
+     */
+    protected $casts = [
+        'date' => 'date',
+        'attendanced_at' => 'datetime',
+        'leaved_at' => 'datetime'
     ];
 
-    // /**
-    //  * 状態定義
-    //  */
-    // const STATUS = [
-    //     1 => [ 'label' => '勤務なう', 'class' => '' ],
-    //     2 => [ 'label' => 'お疲れさん', 'class' => '' ],
-    // ];
+    /**
+     * 出勤時間を返却する.
+     *
+     * @return string - work_hour
+     */
+    public function getWorkHourAttribute()
+    {
+        $work_hour = $this->attendanced_at->diffInHours($this->leaved_at);
 
-    // /**
-    //  * 状態のラベル
-    //  * @return string
-    //  */
-    // public function getStatusAttribute()
-    // {
-    //     // 状態値
-    //     $status = $this->attributes['status'];
-
-    //     // 定義されていなければ空文字を返す
-    //     if (!isset(self::STATUS[$status])) {
-    //         return '';
-    //     }
-
-    //     return $status;
-    // }
+        return $work_hour;
+    }
 
 }

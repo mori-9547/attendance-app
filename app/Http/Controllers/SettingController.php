@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\WorkTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +46,8 @@ class SettingController extends Controller
     {
         $update_data = [
             'start_time' => $request->start_time,
-            'end_time' => $request->end_time
+            'end_time' => $request->end_time,
+            'rest_time' => $request->rest_time
         ];
         Auth::user()->WorkTimes()->update($update_data);
         return redirect()->route('home');

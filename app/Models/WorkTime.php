@@ -23,8 +23,31 @@ class WorkTime extends Model
      */
     protected $fillable = [
         'id',
-        'user_id',
-        'start_time',
-        'end_time'
+        'user_id'
     ];
+
+    /**
+     * キャストする属性
+     *
+     * @var array
+     */
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+        'rest_time' => 'datetime'
+    ];
+
+    protected $appends = ['work_hour'];
+
+    /**
+     * 勤務時間を返却する.
+     *
+     * @return string - work_hour
+     */
+    public function getWorkHourAttribute()
+    {
+        $work_hour = $this->start_time->diffInHours($this->end_time);
+
+        return $work_hour;
+    }
 }

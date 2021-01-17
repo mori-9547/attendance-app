@@ -9,23 +9,23 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Commuting</th>
-                        <th>Leave work</th>
-                        <th>Rest</th>
-                        <th>Overtime</th>
-                        <th>Working hours</th>
+                        <th>日付</th>
+                        <th>出勤時間</th>
+                        <th>退勤時間</th>
+                        <th>休憩時間</th>
+                        <th>残業時間</th>
+                        <th>勤務時間</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($attendance_records as $record)
                     <tr>
                         <th scope="row">{{ $record->date->format('Y/m/d') }}</th>
-                        <td>{{ $record->attendanced_at }}</td>
-                        <td>{{ $record->leaved_at }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $record->attendanced_at->format('H:i') }}</td>
+                        <td>{{ $record->leaved_at->format('H:i') }}</td>
+                        <td>{{ $setting_data[0]->rest_time->format('H:i') }}</td>
+                        <td>{{ $record->work_hour - $setting_data[0]->work_hour }}</td>
+                        <td>{{ $record->work_hour }}</td>
                     </tr>
                     @endforeach
                 </tbody>
