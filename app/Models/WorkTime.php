@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,18 +24,10 @@ class WorkTime extends Model
      */
     protected $fillable = [
         'id',
-        'user_id'
-    ];
-
-    /**
-     * キャストする属性
-     *
-     * @var array
-     */
-    protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
-        'rest_time' => 'datetime'
+        'user_id',
+        'start_time',
+        'end_time',
+        'rest_time'
     ];
 
     protected $appends = ['work_hour'];
@@ -46,7 +39,10 @@ class WorkTime extends Model
      */
     public function getWorkHourAttribute()
     {
-        $work_hour = $this->start_time->diffInHours($this->end_time);
+        $start_time = Carbon::parse($this->start_time);
+        $end_time = Carbon::parse($this->end_time);
+
+        $work_hour = $start_time->diffInHours($end_time);
 
         return $work_hour;
     }

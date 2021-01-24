@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,11 @@ class SettingController extends Controller
         $work_data = Auth::user()
             ->WorkTimes()
             ->first();
+        if (!is_null($work_data)) {
+            $work_data->start_time = Carbon::parse($work_data->start_time);
+            $work_data->end_time = Carbon::parse($work_data->end_time);
+            $work_data->rest_time = Carbon::parse($work_data->rest_time);
+        }
         return view('setting', [
             'work_data' => $work_data
         ]);

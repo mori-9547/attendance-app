@@ -20,12 +20,12 @@
                 <tbody>
                     @foreach ($attendance_records as $record)
                     <tr>
-                        <th scope="row">{{ $record->date->format('Y/m/d') }}</th>
-                        <td>{{ $record->attendanced_at->format('H:i') }}</td>
-                        <td>{{ $record->leaved_at->format('H:i') }}</td>
-                        <td>{{ $setting_data[0]->rest_time->format('H:i') }}</td>
-                        <td>{{ $record->work_hour - $setting_data[0]->work_hour }}</td>
-                        <td>{{ $record->work_hour }}</td>
+                        <th scope="row">{{ $record->date }}</th>
+                        <td>{{ $record->attendanced_at }}</td>
+                        <td>{{ $record->leaved_at }}</td>
+                        <td>{{ $setting_data[0]->rest_time }}</td>
+                        <td>{{ $record->work_hour - $setting_data[0]->rest_time - ($setting_data[0]->work_hour - $setting_data[0]->rest_time) }}</td>
+                        <td>{{ $record->work_hour - $setting_data[0]->rest_time }}</td>
                     </tr>
                     @endforeach
                 </tbody>

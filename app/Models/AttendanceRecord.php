@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,18 +25,12 @@ class AttendanceRecord extends Model
         'id',
         'user_id',
         'status',
+        'date',
+        'attendanced_at',
+        'leaved_at'
     ];
 
-    /**
-     * キャストする属性
-     *
-     * @var array
-     */
-    protected $casts = [
-        'date' => 'date',
-        'attendanced_at' => 'datetime',
-        'leaved_at' => 'datetime'
-    ];
+    protected $appends = ['work_hour'];
 
     /**
      * 出勤時間を返却する.
@@ -44,7 +39,10 @@ class AttendanceRecord extends Model
      */
     public function getWorkHourAttribute()
     {
-        $work_hour = $this->attendanced_at->diffInHours($this->leaved_at);
+        $start_time = Carbon::parse($this->attendanced_at);
+        $end_time = Carbon::parse($this->leaved_at);
+
+        $work_hour = $start_time->diffInHours($end_time);
 
         return $work_hour;
     }
