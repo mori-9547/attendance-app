@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function WorkTimes()
     {
-        return $this->hasMany('App\Models\WorkTime');
+        return $this->hasOne('App\Models\WorkTime');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\AttendanceRecordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
+    Route::put('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 
+    Route::get('/attendance', [AttendanceRecordController::class, 'index'])->name('attendanceRecord.index');
 });
 
 Auth::routes();

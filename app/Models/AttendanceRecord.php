@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,35 +24,27 @@ class AttendanceRecord extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'date',
         'status',
+        'date',
         'attendanced_at',
         'leaved_at'
     ];
 
-    // /**
-    //  * 状態定義
-    //  */
-    // const STATUS = [
-    //     1 => [ 'label' => '勤務なう', 'class' => '' ],
-    //     2 => [ 'label' => 'お疲れさん', 'class' => '' ],
-    // ];
+    protected $appends = ['work_hour'];
 
-    // /**
-    //  * 状態のラベル
-    //  * @return string
-    //  */
-    // public function getStatusAttribute()
-    // {
-    //     // 状態値
-    //     $status = $this->attributes['status'];
+    /**
+     * 出勤時間を返却する.
+     *
+     * @return string - work_hour
+     */
+    public function getWorkHourAttribute()
+    {
+        $start_time = Carbon::parse($this->attendanced_at);
+        $end_time = Carbon::parse($this->leaved_at);
 
-    //     // 定義されていなければ空文字を返す
-    //     if (!isset(self::STATUS[$status])) {
-    //         return '';
-    //     }
+        $work_hour = $start_time->diffInHours($end_time);
 
-    //     return $status;
-    // }
+        return $work_hour;
+    }
 
 }
