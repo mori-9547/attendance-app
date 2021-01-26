@@ -26,6 +26,8 @@ class AttendanceRecordController extends Controller
         if (isset($setting_data[0])) {
             $rest_minutes = Carbon::parse($setting_data[0]->rest_time)->minute / 60;
             $setting_data[0]->rest_time = Carbon::parse($setting_data[0]->rest_time)->hour + $rest_minutes;
+            $setting_data[0]->start_time = Carbon::parse($setting_data[0]->start_time)->format('H:i');
+            $setting_data[0]->end_time = Carbon::parse($setting_data[0]->end_time)->format('H:i');
         }
         return view('attendance', [
             'attendance_records' => $attendance_records,

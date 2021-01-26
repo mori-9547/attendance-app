@@ -33,3 +33,11 @@
         }
     }
 }
+
+.table-title {
+    display: flex;
+    justify-content: space-between;
+    p {
+        margin: 0;
+    }
+}
