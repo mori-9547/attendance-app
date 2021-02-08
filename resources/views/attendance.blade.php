@@ -17,7 +17,7 @@
                                     2021/09
                                 </div>
                                 <div class="table-title__csv">
-                                    <a href="">CSV</a>
+                                    <a href="{{ route('attendanceRecord.export') }}">CSV</a>
                                 </div>
                             </div>
                         </div>

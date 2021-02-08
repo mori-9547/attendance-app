@@ -5,6 +5,8 @@
  */
 
 require('./bootstrap');
+// date.js を読み込み
+require('./date');
 
 window.Vue = require('vue');
 

@@ -71299,7 +71299,10 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // date.js を読み込み
+
+
+__webpack_require__(/*! ./date */ "./resources/js/date.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -71479,14 +71482,13 @@ $(function () {
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/date.js ./resources/sass/app.scss ***!
-  \************************************************************************************/
+/*!*************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/yuyamori/Projects/attendance_app/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/yuyamori/Projects/attendance_app/resources/js/date.js */"./resources/js/date.js");
 module.exports = __webpack_require__(/*! /Users/yuyamori/Projects/attendance_app/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
