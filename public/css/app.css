@@ -10931,3 +10931,16 @@ a.text-dark:focus {
   margin: 0 16px 0 0;
 }
 
+.table {
+  margin: 0;
+}
+
+.table-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-title p {
+  margin: 0;
+}
+

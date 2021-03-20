@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 
     Route::get('/attendance', [AttendanceRecordController::class, 'index'])->name('attendanceRecord.index');
+    Route::get('/export', [AttendanceRecordController::class, 'export'])->name('attendanceRecord.export');
+
 });
 
 Auth::routes();
