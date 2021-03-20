@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/setting', [SettingController::class, 'create'])->name('setting.create');
     Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
-    Route::put('/setting/update', [SettingController::class, 'update'])->name('setting.update');
+    Route::patch('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 
     Route::get('/attendance', [AttendanceRecordController::class, 'index'])->name('attendanceRecord.index');
     Route::get('/export', [AttendanceRecordController::class, 'export'])->name('attendanceRecord.export');

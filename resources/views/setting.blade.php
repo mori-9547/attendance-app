@@ -15,7 +15,7 @@
                         <form class="card-body" action="{{ route('setting.store') }}" method="post">
                         @else
                         <form class="card-body" action="{{ route('setting.update') }}" method="post">
-                        @method('PUT')
+                        @method('PATCH')
                         @endif
                             @csrf
                             <div class="card-body__time">
