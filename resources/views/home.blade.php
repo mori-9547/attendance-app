@@ -16,9 +16,9 @@
                             @endif
                         </div>
                         @if ($attendance_status == '')
-                        <form class="card-body" action="{{ route('attendanceRecord.store') }}" method="post">
+                        <form class="card-body" action="{{ route('attendanceRecord.store') }}" method="post" onSubmit="return checkSubmit()">
                         @else
-                        <form class="card-body" action="{{ route('attendanceRecord.update') }}" method="post">
+                        <form class="card-body" action="{{ route('attendanceRecord.update') }}" method="post" onSubmit="return checkSubmit()">
                         @method('PUT')
                         @endif
                             @csrf
@@ -43,3 +43,8 @@
     </div>
 </div>
 @endsection
+<script>
+    function checkSubmit() {
+        return confirm("データを送信しますか？");
+    }
+</script>

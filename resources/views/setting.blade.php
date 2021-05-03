@@ -12,9 +12,9 @@
                             就業時間設定
                         </div>
                         @if (empty($work_data))
-                        <form class="card-body" action="{{ route('setting.store') }}" method="post">
+                        <form class="card-body" action="{{ route('setting.store') }}" method="post" onSubmit="return checkSubmit()">
                         @else
-                        <form class="card-body" action="{{ route('setting.update') }}" method="post">
+                        <form class="card-body" action="{{ route('setting.update') }}" method="post" onSubmit="return checkSubmit()">
                         @method('PATCH')
                         @endif
                             @csrf
@@ -52,3 +52,9 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function checkSubmit() {
+        return confirm("データを送信しますか？");
+    }
+</script>
