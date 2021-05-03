@@ -1849,8 +1849,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./date */ "./resources/js/date.js");
 
-__webpack_require__(/*! ./check_submit */ "./resources/js/check_submit.js");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1894,18 +1892,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/check_submit.js":
-/*!**************************************!*\
-  !*** ./resources/js/check_submit.js ***!
-  \**************************************/
-/***/ (() => {
-
-function checkSubmit() {
-  return confirm("データを送信しますか？");
-}
 
 /***/ }),
 

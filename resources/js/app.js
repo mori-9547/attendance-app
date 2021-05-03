@@ -6,4 +6,3 @@
 
 require('./bootstrap');
 require('./date');
-require('./check_submit');

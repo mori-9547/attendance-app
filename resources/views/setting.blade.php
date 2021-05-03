@@ -21,21 +21,21 @@
                             <div class="card-body__time">
                                 <p class=label-item>
                                     <label for="start_time">勤務開始時刻</label>
-                                    <input
-                                        class="setting-time" type="time" name="start_time"
+                                    <input class="setting-time form-control"
+                                        type="time" name="start_time"
                                         value="{{ !empty($work_data['start_time']) ? $work_data['start_time']->format('H:i') : '' }}"
                                     >
                                 </p>
                                 <p class=label-item>
                                     <label for="end_time">勤務終了時刻</label>
-                                    <input class="setting-time"
+                                    <input class="setting-time form-control"
                                         type="time" name="end_time"
                                         value="{{ !empty($work_data['end_time']) ? $work_data['end_time']->format('H:i') : '' }}"
                                     >
                                 </p>
                                 <p class=label-item>
                                     <label for="rest_time">休憩時間</label>
-                                    <input class="setting-time"
+                                    <input class="setting-time form-control"
                                         type="time" name="rest_time"
                                         value="{{ !empty($work_data['rest_time']) ? $work_data['rest_time']->format('H:i') : '' }}"
                                     >

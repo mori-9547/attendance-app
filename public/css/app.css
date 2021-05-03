@@ -9989,9 +9989,15 @@ h3 {
 
 .card-body__time .label-item {
   font-size: 24px;
+  display: flex;
+  justify-content: center;
 }
 .card-body__time .label-item label {
   margin: 0 16px 0 0;
+}
+
+.setting-time {
+  width: auto;
 }
 
 .table {
