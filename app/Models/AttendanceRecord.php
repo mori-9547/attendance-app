@@ -30,21 +30,4 @@ class AttendanceRecord extends Model
         'leaved_at'
     ];
 
-    protected $appends = ['work_hour'];
-
-    /**
-     * 出勤時間を返却する.
-     *
-     * @return string - work_hour
-     */
-    public function getWorkHourAttribute()
-    {
-        $start_time = Carbon::parse($this->attendanced_at);
-        $end_time = Carbon::parse($this->leaved_at);
-
-        $work_hour = $start_time->diffInHours($end_time);
-
-        return $work_hour;
-    }
-
 }

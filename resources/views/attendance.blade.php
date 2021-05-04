@@ -11,10 +11,12 @@
                         <div class="card-header">
                             <div class="table-title">
                                 <p class="table-title__schedule">
-                                    出勤時間：{{ $setting_data[0]->start_time }}　退勤時間：{{ $setting_data[0]->end_time }}　休憩時間：{{ $setting_data[0]->rest_time }}時間
+                                    出勤時間：{{ $setting_data[0]->start_time }}　退勤時間：{{ $setting_data[0]->end_time }}　休憩時間：{{ $setting_data[0]->rest_time }}
                                 </p>
                                 <div class="table-title__filter">
-                                    2021/09
+                                    <svg id="js-previous" class="w-6 h-6" fill="none" stroke="currentColor" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                    <span id="js-month"></span>
+                                    <svg id="js-next" class="w-6 h-6" fill="none" stroke="currentColor" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                                 </div>
                                 <div class="table-title__csv">
                                     <a href="{{ route('attendanceRecord.export') }}">CSV</a>
@@ -39,8 +41,8 @@
                                     <td>{{ $record->attendanced_at }}</td>
                                     <td>{{ $record->leaved_at }}</td>
                                     <td>{{ $setting_data[0]->rest_time }}</td>
-                                    <td>{{ $record->work_hour - $setting_data[0]->rest_time - ($setting_data[0]->work_hour - $setting_data[0]->rest_time) }}</td>
-                                    <td>{{ $record->work_hour - $setting_data[0]->rest_time }}</td>
+                                    <td>{{ $record->overtime }}</td>
+                                    <td>{{ $record->total_worked }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

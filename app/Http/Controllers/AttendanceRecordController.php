@@ -24,12 +24,7 @@ class AttendanceRecordController extends Controller
         $setting_data = Auth::user()
             ->WorkTimes()
             ->get();
-        if (isset($setting_data[0])) {
-            $rest_minutes = Carbon::parse($setting_data[0]->rest_time)->minute / 60;
-            $setting_data[0]->rest_time = Carbon::parse($setting_data[0]->rest_time)->hour + $rest_minutes;
-            $setting_data[0]->start_time = Carbon::parse($setting_data[0]->start_time)->format('H:i');
-            $setting_data[0]->end_time = Carbon::parse($setting_data[0]->end_time)->format('H:i');
-        }
+        $this->calcAttendanceData($attendance_records, $setting_data);
         return view('attendance', [
             'attendance_records' => $attendance_records,
             'setting_data' => $setting_data
@@ -39,25 +34,38 @@ class AttendanceRecordController extends Controller
     /**
      * Excel export
      */
-    public function export()
+    public function export(Request $request)
     {
-        $attendance_records = Auth::user()
-            ->AttendanceRecords()
-            ->orderBy('date', 'asc')
-            ->get();
-        $setting_data = Auth::user()
-            ->WorkTimes()
-            ->get();
-        if (isset($setting_data[0])) {
-            $rest_minutes = Carbon::parse($setting_data[0]->rest_time)->minute / 60;
-            $setting_data[0]->rest_time = Carbon::parse($setting_data[0]->rest_time)->hour + $rest_minutes;
-            $setting_data[0]->start_time = Carbon::parse($setting_data[0]->start_time)->format('H:i');
-            $setting_data[0]->end_time = Carbon::parse($setting_data[0]->end_time)->format('H:i');
-        }
+        $data = $this->index($request);
         $view = view('export', [
-            'attendance_records' => $attendance_records,
-            'setting_data' => $setting_data
+            'attendance_records' => $data->attendance_records,
+            'setting_data' => $data->setting_data
         ]);
         return \Excel::download(new Export($view), 'attendance.csv');
+    }
+
+    /**
+     * Calculate attendance data
+     */
+    public function calcAttendanceData($attendances, $setting) {
+        $start_time = new Carbon($setting[0]->start_time);
+        $end_time = new Carbon($setting[0]->end_time);
+        $rest_time = new Carbon($setting[0]->rest_time);
+        if ($rest_time->minute == 0) {
+            $rest_time = $rest_time->hour;
+        } else {
+            $rest_time = $rest_time->hour + ($rest_time->minute) / 60;
+        }
+        $work_time = $start_time->diffInHours($end_time) - $rest_time;
+        foreach ($attendances as $attendance) {
+            $attendance_at = new Carbon($attendance->attendanced_at);
+            $leaved_at = new Carbon($attendance->leaved_at);
+            $staying_time = $attendance_at->diffInHours($leaved_at);
+
+            // add total work time & work overtime
+            $attendance->total_worked = $staying_time - $rest_time;
+            $attendance->overtime = $attendance->total_worked - $work_time;
+        }
+
     }
 }

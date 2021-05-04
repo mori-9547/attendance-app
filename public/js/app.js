@@ -1910,15 +1910,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var today = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('L');
-var week = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('dddd');
+var thisWeek = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('dddd');
 $(function () {
   setInterval(function () {
-    $('#js-date').text(today + ' ' + week);
+    $('#js-date').text(today + ' ' + thisWeek);
     $('#js-time').text(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
-    $('input[name="stamp_date"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format("YYYY-MM-DD"));
+    $('input[name="stamp_date"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('YYYY-MM-DD'));
     $('input[name="stamp_time"]').val(moment__WEBPACK_IMPORTED_MODULE_0___default()().format('LTS'));
   }, 500);
 });
+var thisMonth = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('YYYY-MM');
+var index = 0;
+var next = document.getElementById('js-next');
+var previous = document.getElementById('js-previous');
+$('#js-month').text(thisMonth);
+
+if (next) {
+  next.addEventListener('click', function () {
+    index += 1;
+    calcMonth(index);
+  });
+}
+
+if (previous) {
+  previous.addEventListener('click', function () {
+    index -= 1;
+    calcMonth(index);
+  });
+}
+
+function calcMonth(index) {
+  var updateMonth = moment__WEBPACK_IMPORTED_MODULE_0___default()().add(index, "months").format("YYYY-MM");
+  $('#js-month').text(updateMonth);
+}
 
 /***/ }),
 
