@@ -34,18 +34,7 @@
                                     <th>勤務時間</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($attendance_records as $record)
-                                <tr>
-                                    <td scope="row">{{ $record->date }}</td>
-                                    <td>{{ $record->attendanced_at }}</td>
-                                    <td>{{ $record->leaved_at }}</td>
-                                    <td>{{ $setting_data[0]->rest_time }}</td>
-                                    <td>{{ $record->overtime }}</td>
-                                    <td>{{ $record->total_worked }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                            <tbody id="js-target"></tbody>
                         </table>
                     </div>
                 </div>

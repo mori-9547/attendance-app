@@ -65,7 +65,23 @@ class AttendanceRecordController extends Controller
             // add total work time & work overtime
             $attendance->total_worked = $staying_time - $rest_time;
             $attendance->overtime = $attendance->total_worked - $work_time;
+            $attendance->rest_time = $rest_time;
         }
+    }
 
+    /**
+     * Ajax record filter endpoint
+     */
+    public function recordFilter(Request $request) {
+        $attendance_records = Auth::user()
+            ->AttendanceRecords()
+            ->where('date', 'like', $request->month . '%')
+            ->orderBy('date', 'asc')
+            ->get();
+        $setting_data = Auth::user()
+            ->WorkTimes()
+            ->get();
+        $this->calcAttendanceData($attendance_records, $setting_data);
+        return response()->json($attendance_records);
     }
 }

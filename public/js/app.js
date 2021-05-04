@@ -1923,7 +1923,6 @@ var thisMonth = moment__WEBPACK_IMPORTED_MODULE_0___default()().format('YYYY-MM'
 var index = 0;
 var next = document.getElementById('js-next');
 var previous = document.getElementById('js-previous');
-$('#js-month').text(thisMonth);
 
 if (next) {
   next.addEventListener('click', function () {
@@ -1939,9 +1938,38 @@ if (previous) {
   });
 }
 
+function dispMonth(month) {
+  $('#js-month').text(month);
+  $('#js-input').val(month);
+  ajaxFilter(month);
+}
+
+dispMonth(thisMonth);
+
 function calcMonth(index) {
   var updateMonth = moment__WEBPACK_IMPORTED_MODULE_0___default()().add(index, "months").format("YYYY-MM");
-  $('#js-month').text(updateMonth);
+  dispMonth(updateMonth);
+}
+
+function ajaxFilter(month) {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: "/attendance/filter",
+    dataType: 'json',
+    type: "get",
+    data: {
+      'month': month
+    },
+    success: function success(response) {
+      $('#js-target').empty();
+
+      for (var i = 0; i < response.length; i++) {
+        $('<tr><td>' + response[i]['date'] + '</td><td>' + response[i]['attendanced_at'] + '</td><td>' + response[i]['leaved_at'] + '</td><td>' + response[i]['rest_time'] + '</td><td>' + response[i]['overtime'] + '</td><td>' + response[i]['total_worked'] + '</td><td></td></tr>').appendTo('#js-target');
+      }
+    }
+  });
 }
 
 /***/ }),
