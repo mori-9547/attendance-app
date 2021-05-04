@@ -9991,6 +9991,7 @@ h3 {
   font-size: 24px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .card-body__time .label-item label {
   margin: 0 16px 0 0;
@@ -9998,6 +9999,7 @@ h3 {
 
 .setting-time {
   width: auto;
+  font-size: 24px;
 }
 
 .table {
