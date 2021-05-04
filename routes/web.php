@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/attendance', [AttendanceRecordController::class, 'index'])->name('attendanceRecord.index');
     Route::get('/attendance/filter', [AttendanceRecordController::class, 'recordFilter'])->name('attendanceRecord.recordFilter');
-    Route::get('/export', [AttendanceRecordController::class, 'export'])->name('attendanceRecord.export');
+    Route::get('/export/{month?}', [AttendanceRecordController::class, 'export'])->name('attendanceRecord.export');
 
 });
 

@@ -17,16 +17,10 @@ class AttendanceRecordController extends Controller
      */
     public function index(Request $request)
     {
-        $attendance_records = Auth::user()
-            ->AttendanceRecords()
-            ->orderBy('date', 'asc')
-            ->get();
         $setting_data = Auth::user()
             ->WorkTimes()
             ->get();
-        $this->calcAttendanceData($attendance_records, $setting_data);
         return view('attendance', [
-            'attendance_records' => $attendance_records,
             'setting_data' => $setting_data
         ]);
     }
@@ -36,12 +30,28 @@ class AttendanceRecordController extends Controller
      */
     public function export(Request $request)
     {
-        $data = $this->index($request);
+        $data = $this->recordFilter($request);
+        $data_content = $data->content();
         $view = view('export', [
-            'attendance_records' => $data->attendance_records,
-            'setting_data' => $data->setting_data
+            'attendance_records' => json_decode($data_content)
         ]);
         return \Excel::download(new Export($view), 'attendance.csv');
+    }
+
+    /**
+     * Ajax record filter endpoint
+     */
+    public function recordFilter(Request $request) {
+        $attendance_records = Auth::user()
+            ->AttendanceRecords()
+            ->where('date', 'like', $request->month . '%')
+            ->orderBy('date', 'asc')
+            ->get();
+        $setting_data = Auth::user()
+            ->WorkTimes()
+            ->get();
+        $this->calcAttendanceData($attendance_records, $setting_data);
+        return response()->json($attendance_records);
     }
 
     /**
@@ -69,19 +79,4 @@ class AttendanceRecordController extends Controller
         }
     }
 
-    /**
-     * Ajax record filter endpoint
-     */
-    public function recordFilter(Request $request) {
-        $attendance_records = Auth::user()
-            ->AttendanceRecords()
-            ->where('date', 'like', $request->month . '%')
-            ->orderBy('date', 'asc')
-            ->get();
-        $setting_data = Auth::user()
-            ->WorkTimes()
-            ->get();
-        $this->calcAttendanceData($attendance_records, $setting_data);
-        return response()->json($attendance_records);
-    }
 }

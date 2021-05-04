@@ -34,6 +34,7 @@ if (previous) {
 function dispMonth(month) {
     $('#js-month').text(month);
     $('#js-input').val(month);
+    $('#js-csv').attr("href", "/export/?month=" + month);
     ajaxFilter(month);
 }dispMonth(thisMonth);
 
