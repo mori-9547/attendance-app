@@ -35,7 +35,7 @@
                             <tbody>
                                 @foreach ($attendance_records as $record)
                                 <tr>
-                                    <th scope="row">{{ $record->date }}</th>
+                                    <td scope="row">{{ $record->date }}</td>
                                     <td>{{ $record->attendanced_at }}</td>
                                     <td>{{ $record->leaved_at }}</td>
                                     <td>{{ $setting_data[0]->rest_time }}</td>
