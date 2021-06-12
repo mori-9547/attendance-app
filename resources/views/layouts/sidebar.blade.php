@@ -4,10 +4,10 @@
         <div class="list-group">
             <a href="/"
                 class="list-group-item {{ request()->path() == '/' ? 'active' : 'list-group-item-action' }}"
-            >Home</a>
+            >ホーム</a>
             <a href="{{ route('attendanceRecord.index') }}"
                 class="list-group-item {{ request()->is('*attendance*') ? 'active' : 'list-group-item-action' }}"
-            >Attendance Records</a>
+            >勤怠データ</a>
         </div>
     </div>
 </div>

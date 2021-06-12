@@ -20,6 +20,9 @@ class AttendanceRecordController extends Controller
         $setting_data = Auth::user()
             ->WorkTimes()
             ->get();
+        if ($setting_data->isEmpty()) {
+            return redirect()->route('setting.create');
+        }
         return view('attendance', [
             'setting_data' => $setting_data
         ]);
